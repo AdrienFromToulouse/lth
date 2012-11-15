@@ -1,10 +1,12 @@
 {
-  "name": "babyfoot-app",
-  "description": "babyfoot test app",	
+  "name": "lth-app",
+  "description": "lth application",	
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "test": "mocha --recursive"
+
   },
   "dependencies": {
     "express": "3.0.0rc3",

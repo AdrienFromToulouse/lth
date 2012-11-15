@@ -1,15 +1,18 @@
 var mongoose = require('mongoose')
+, lth = require('../../config/lth')
 , should = require('should')
 , shop = require('../../schemas/shop');
 
 
-var NMBROF_CITIES = 7;
+/*
+ * Get the LTH general configuration.
+ */
+var config = lth.config();
 
 
 describe('asiance_LTH', function(){
     describe('#getShops()', function(){
 	it('should get shops without error', function(done){
-
 
 	    var db = mongoose.createConnection('localhost', 'asiance_LTH');
 
@@ -25,7 +28,7 @@ describe('asiance_LTH', function(){
 
 		    should.exist(shops[0].cities);
 
-		    shops[0].cities.should.lengthOf(NMBROF_CITIES);
+		    shops[0].cities.should.lengthOf(config.NMBROF_CITIES);
 
 		    shops[0].cities[0].should.have.property('name', '대구시');
 		    shops[0].cities[1].should.have.property('name', '대전시');
