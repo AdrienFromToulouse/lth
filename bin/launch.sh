@@ -1,7 +1,7 @@
 #!/bin/sh
 
-ls
+# ls
 
+# nodemon --watch ../views --watch ../routes --watch ../public --watch ../app.js ../app.js
 
-
-nodemon --watch ../views --watch ../routes --watch ../public --watch ../app.js ../app.js
+forever app.js > output.log &

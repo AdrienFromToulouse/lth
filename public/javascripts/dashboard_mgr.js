@@ -7,10 +7,9 @@ var Player = Backbone.Model.extend({
     //   sparkles : false,
     //   cream_filled : false
     // },
-    
+    idAttribute: "_id",    
     url : function() {
-	// It's got to know where to send its REST calls. 
-	// In this case, POST to '/donuts' and PUT to '/donuts/:id'
+	// In this case, POST to '/players' and PUT to '/playerss/:id'
 	//return "http://lth.lacoste.asiance-dev.com/player/:id"; 
 
 	return this.id ? '/players/' + this.id : '/players'; 
@@ -39,14 +38,21 @@ var player_p = new Player({
 
 // POST to the RESTful interface.
 player_p.save({
-    firstname : "Boston"},{
+    firstname : "Boston Doan Yes"},{
     error: function(){ console.log("ERROR"); } ,
     success: function(){  console.log(player_p.get("firstname"));
-		//	  player_p.set({ firstname : "11114" });
 			  console.log(player_p.id);
+
+			  player_p.save({
+			      firstname : "Boston Doee"},{
+				  error: function(){ console.log("ERROR"); } ,
+				  success: function(){  console.log(player_p.get("firstname"));
+							console.log(player_p.id);
+						     }
+			      });
+
 		       }
     });
-
 
 console.log(player_p);
 
@@ -87,13 +93,20 @@ console.log(player_p);
 
 
 // var PlayerView = Backbone.View.extend({
+
 //     tagName : "div",
 //     className : "player",
     
-//     render : function() {
+//     template: _.template($('#document-row-template').html()),
 
-// 	this.el.innerHTML = this.model.get('firstname');
-	
+//     initialize: function() {
+// 	_.bindAll(this, 'render');
+//     },
+//     render: function() {
+// 	$(this.el).html(this.template({
+// 	    p_id: this.model.id,
+// 	    p_title: this.model.get('firstname')
+// 	}));
 // 	return this;
 //     }
 // });
@@ -104,3 +117,35 @@ console.log(player_p);
 // });
 
 // var renderedDonutElement = PView.render().el;
+
+var PlayerView = Backbone.View.extend({
+    initialize: function(){
+        console.log("[INFO]: Init Backbone View");
+    },
+
+    events: {
+        "click #search_container": "do"
+    },
+
+    do: function( event ){
+    	console.log("RIGHT!!!!!!!!!!!!!!");
+    }
+});
+
+var player_view = new PlayerView({ el: $("#search_container") });
+
+
+// var TestView = Back\bone.View.extend({
+  
+//   initialize: function() {
+//     this.template = jade.compile($("#test").text());
+//   },
+  
+//   render: function() {
+//     var html = this.template({ item: 'hello, world'});
+//     $('body').append(html);
+//   }
+// });
+
+// var test = new TestView();
+// test.render();

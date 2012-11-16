@@ -25,9 +25,6 @@ app.configure(function(){
     app.set('port', process.env.PORT || 3102);
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
-
-    console.log(__dirname);
-
     app.use(express.favicon(__dirname + '/public/images/croco-red.png'));
     app.use(express.logger('dev'));
     app.use(express.bodyParser());

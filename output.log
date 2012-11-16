@@ -1,0 +1,22 @@
+/var/www/lacoste/lth/stage
+STARTED IN development MODE
+Express server listening on port 3102
+[90mGET /shops?jsoncallback=jQuery17209602536296006292_1353029778880&_=1353029779728 [32m200 [90m51ms - 3.63kb[0m
+[90mGET /images/croco-red.png [36m304 [90m2ms[0m
+[90mGET /images/croco-red.png [36m304 [90m1ms[0m
+[90mGET /images/croco-red.png [36m304 [90m1ms[0m
+[90mGET /images/croco-red.png [36m304 [90m1ms[0m
+[90mGET /images/croco-red.png [36m304 [90m0ms[0m
+[90mGET /images/croco-red.png [36m304 [90m0ms[0m
+[90mGET /images/croco-red.png [36m304 [90m0ms[0m
+[90mGET /images/croco-red.png [36m304 [90m1ms[0m
+[90mGET /shops?jsoncallback=jQuery17207763762096874416_1353031506269&_=1353031506651 [32m200 [90m12ms - 3.63kb[0m
+[90mGET /images/croco-red.png [36m304 [90m2ms[0m
+[90mGET /images/croco-red.png [36m304 [90m0ms[0m
+[90mGET /images/croco-red.png [36m304 [90m0ms[0m
+[90mGET /images/croco-red.png [36m304 [90m1ms[0m
+[90mGET /images/croco-red.png [36m304 [90m1ms[0m
+[90mGET /images/croco-red.png [36m304 [90m1ms[0m
+/var/www/lacoste/lth/stage
+STARTED IN development MODE
+Express server listening on port 3102

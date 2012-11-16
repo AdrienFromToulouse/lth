@@ -144,14 +144,12 @@ exports.updatePlayer = function(req ,res){
     var db = mongoose.createConnection('localhost', 'asiance_LTH');
 
     var Player = db.model('players',players);
-
-    var player = new Player;
     
     db.once('open', function () {
 
-	player.findById(req.params.id, function (err, player) {
+	Player.findById(req.params.id, function (err, player) {
 
-	    product.firstname = req.body.firstname;
+	    player.firstname = req.body.firstname;
 	    
 	    player.save(function (err) {
     		if(err){
