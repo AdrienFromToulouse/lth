@@ -29,11 +29,17 @@ app.configure(function(){
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+
+ 
+    app.use(express.cookieParser('keyboard cat'));
+    app.use(express.session());
+
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.errorHandler({showStack: true, dumpExceptions: true}));
     app.use(express.vhost('lacoste.lth.asiance-dev.com', app));
 });
+
 
 /**
  * Development: export NODE_ENV=development or NODE_ENV=development node app
@@ -43,27 +49,26 @@ app.configure('development', function(){
     console.log("STARTED IN development MODE");
     app.use(express.errorHandler());
 
-
     /**
      * General
      */
     app.get('/',routes.index);
 
     /**
+     * User login
+     */
+    app.post('/login',routes.create_session);
+
+    /**
      * Dashboard
      */
     app.get('/dashboard',routes.dashboard);
-
-
-
 
     /**
      * Get all the shops
      */
     app.get('/shops', function(req, res){
-	
     	shop.getShops(req, res);
-
     });
 
     /**
@@ -77,7 +82,18 @@ app.configure('development', function(){
      * CREAT a player
      */
     app.post('/players', function(req, res){
-	console.log("POST PLAYER");
+	console.log("CREATE PLAYER");
+
+	req.session.player_fbId = req.body.fb_id;
+	req.session.player_name = req.body.first_name;
+
+	console.log(req.body.first_name);
+	console.log("HALLO");
+	console.log(req.session);
+
+	console.log(req.session.player_name);
+
+
     	player.createPlayer(req, res);
     });
     /**
@@ -87,6 +103,23 @@ app.configure('development', function(){
 	console.log("UPDATE PLAYER");
     	player.updatePlayer(req, res);
     });
+
+    /**
+     * READ a player
+     */
+    app.get('/player', function(req, res){
+	console.log("GET A PLAYER");
+    	player.getPlayer(req, res);
+    });
+
+   /**
+     * DELETE all players (used in test only)
+     */
+    app.delete('/players',function(req, res){
+	console.log("DELETE ALL PLAYERS");
+    	player.deletePlayers(req, res);
+    });
+  
 });
 
 /**
