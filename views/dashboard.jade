@@ -2,13 +2,27 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Welcome to #{title} #{name} FBID #{fbId}  
 
+
+  img#croco(src="images/croco-red.png", alt="L!ve")
+
+
+
+  script(src="/javascripts/facebook_mgr.js")
+
+
+
+  script(src="/javascripts/dashboard_tpl.js")
+  script(src="/javascripts/dashboard_h.js")
   script(src="/javascripts/dashboard_mgr.js")
 
-  img(src="images/croco-red.png", alt="L!ve")
+  #player_games
 
-  input(type="button", id="search_button", value="Search")
+  #prizes
 
 
-  p#search_container player
+
+
+
+ 

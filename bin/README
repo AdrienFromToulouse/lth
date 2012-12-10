@@ -1,0 +1,19 @@
+To fill the database with the QRcode or NFC ID:
+---
+
+run the perl script init_asiance_LTH_DB_QRNFCids.pl. This script does:
+
+- generate createIDs.sh
+- run createIDs.sh to apply mongoDB commands
+- remove createIDs.sh on finish
+
+
+To fill the database with the shops:
+---
+
+run the bash script init_asiance_LTH_DB_shops.sh.
+
+To fill the database with the players: [used in jasmine tests]
+---
+
+run the bash script init_asiance_LTH_DB_players.sh.

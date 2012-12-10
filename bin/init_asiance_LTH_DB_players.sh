@@ -20,19 +20,21 @@ mongo asiance_LTH --eval 'db.players.save({
 
     address: "address PlayerX",
     phone: "010-0000-1111",
-    facebook_id: "",
+    facebook_id: "1588776452",
     picture: "",
 
-    games: [{name: "game1",
-             score: 1984},
-            {name: "game2",
-             score: 1985},
-            {name: "game3",
-             score: 1986},
-            {name: "game4",
-             score: 1987},
-            {name: "game5",
-             score: 1988}],
+    games: [{score: 1984,
+             collectedCodes: [{code: "7a38dOc212e97c15a584f910e96"},
+                              {code: "8a38dOc313e97c15a584f910e96"}]
+            },
+            {score: 1985,
+             collectedCodes: [{code: "7a38dOc212e97c15a584f910e96"},
+                              {code: "8a38dOc313e97c15a584f910e96"}]
+            },
+            {score: 1986,
+             collectedCodes: [{code: "7a38dOc212e97c15a584f910e96"},
+                              {code: "8a38dOc313e97c15a584f910e96"}]
+            }],
 
     prizes: [{name: "prize1",
               sent: false},
@@ -56,19 +58,22 @@ mongo asiance_LTH --eval 'db.players.save({
 
     address: "address PlayerX2",
     phone: "010-0000-1111",
-    facebook_id: "",
+    facebook_id: "124578",
     picture: "",
 
-    games: [{name: "game1",
-             score: 1989},
-            {name: "game2",
-             score: 1990},
-            {name: "game3",
-             score: 1991},
-            {name: "game4",
-             score: 1992},
-            {name: "game5",
-             score: 1993}],
+
+    games: [{score: 1989,
+             collectedCodes: [{code: "7a38dOc212e97c15a584f910e96"},
+                              {code: "8a38dOc313e97c15a584f910e96"}]
+            },
+            {score: 1990,
+             collectedCodes: [{code: "7a38dOc212e97c15a584f910e96"},
+                              {code: "8a38dOc313e97c15a584f910e96"}]
+            },
+            {score: 1991,
+             collectedCodes: [{code: "7a38dOc212e97c15a584f910e96"},
+                              {code: "8a38dOc313e97c15a584f910e96"}]
+            }],
 
     prizes: [{name: "prize12",
               sent: true},

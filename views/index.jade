@@ -1,7 +1,24 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  
+  link(rel='stylesheet', href='/stylesheets/main.css')
 
-  img(src="images/croco-red.png", alt="L!ve")
+  script(src="/javascripts/facebook_mgr.js")
+  script(src="/javascripts/index_mgr.js")
+
+  h1= title
+
+  #page
+
+    #welcome
+     p Welcome to #{title} #{name}
+
+    div.dashboard
+
+    img#croco(src="images/croco-red.png", alt="L!ve")
+  
+    #fb-root
+      div.logbutton
+         img#logbut(src="../images/login_butt.png", alt="")
+  

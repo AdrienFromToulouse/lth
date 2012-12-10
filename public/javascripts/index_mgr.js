@@ -11,8 +11,10 @@ function fb_login(){
 
 $(document).ready(function() {
 
-    $("#logbut").click(function() {
+    $("#logbut").on('click touchstart', function(e) {
+	e.preventDefault(); 
 	fb_login();
 
     });
+
 });
