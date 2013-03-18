@@ -31,9 +31,9 @@ describe('asiance_LTH', function(){
 		    players[0].should.have.property('firstname', 'PlayerfirstnameX');
 		    players[0].should.have.property('lastname', 'PlayerlastnameY');
 
-		    players[0].games[0].should.have.property('name', 'game1');
+		    players[0].games[0].should.have.property('collectedCodes');
 		    players[0].games[0].should.have.property('score', 1984);
-		    players[0].games[1].should.have.property('name', 'game2');
+		    players[0].games[1].should.have.property('collectedCodes');
 		    players[0].games[1].should.have.property('score', 1985);
 
 		    players[0].prizes[0].should.have.property('name', 'prize1');
@@ -44,9 +44,9 @@ describe('asiance_LTH', function(){
 		    players[1].should.have.property('firstname', 'PlayerfirstnameX2');
 		    players[1].should.have.property('lastname', 'PlayerlastnameY2');
 
-		    players[1].games[0].should.have.property('name', 'game1');
+		    players[1].games[0].should.have.property('collectedCodes');
 		    players[1].games[0].should.have.property('score', 1989);
-		    players[1].games[1].should.have.property('name', 'game2');
+		    players[1].games[1].should.have.property('collectedCodes');
 		    players[1].games[1].should.have.property('score', 1990);
 
 		    players[1].prizes[0].should.have.property('name', 'prize12');
@@ -61,7 +61,3 @@ describe('asiance_LTH', function(){
 	})
     })
 })
-
-
-
-

@@ -46,7 +46,7 @@ print IDFILE << "MyLabel";
 #This script initializes the LTH DB with QR and NFC IDs.
 
 # Rm the previous ones
-mongo asiance_LTH --eval 'db.qrnfc.remove({})'
+mongo asiance_LTH --eval 'db.tags.remove({})'
 
 # Init
 MyLabel
@@ -58,7 +58,7 @@ MyLabel
 	my $code = md5_hex($source);
 
 	print IDFILE << "MyLabel";
-	mongo asiance_LTH --eval 'db.qrnfc.save({
+	mongo asiance_LTH --eval 'db.tags.save({
     
     type: "qrcode",
     location: "",

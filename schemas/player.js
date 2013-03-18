@@ -47,6 +47,36 @@ var players = new mongoose.Schema({
 
 
 
+/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * PRIVATE FUNCTIONS 
+ *
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+
+/**
+ * Search among the player's tags if the one is already scanned.  
+ *
+ */
+function WasTagAlreadyScanned(player, req, res){
+
+    for(var i = 0 ; i < player.games[req.body.gameId - 1].collectedCodes.length ; i++){
+
+	console.log(player.games[req.body.gameId - 1].collectedCodes[i].code);
+
+	if(player.games[req.body.gameId - 1].collectedCodes[i].code == req.body.code){
+
+	    res.send({ error: 'You already have this tag!' });
+	    return -1;
+	}
+    }
+    return 0;
+}
+
+
+/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * PUBLIC FUNCTIONS 
+ *
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+
 /**
  * Used in tests.
  *
@@ -179,40 +209,50 @@ exports.updatePlayer = function(req ,res){
     var db = mongoose.createConnection('localhost', 'asiance_LTH');
 
     var Player = db.model('players',players);
-    var Tag = db.model( 'tags',qrnfc.getTagsSchema() );
+
+    var tagSchema = qrnfc.getTagsSchema();
+
+    var Tag = db.model( 'tags',tagSchema);
     
     db.once('open', function () {
 
-	var query = Tag.findOne({ code: req.code });
+	var query = Tag.findOne({ code: req.body.code });
     	query.exec(function (err, tag) {
-    	    if (err) { console.log(err); }
 
-	    if(tag != ""){
+   	    if (err) { console.log(err); }
+
+	    /* Check code validity */
+	    if( (tag != null) ){
 
 		Player.findById(req.params.id, function (err, player) {
 
-		    player.games[req.body.gameId - 1].score++ ;
-		    player.games[req.body.gameId - 1].collectedCodes.push({code:req.body.code});
+		    /* Does he have that tag? */
+		    var status = WasTagAlreadyScanned(player, req, res);
 
-		    player.save(function (err) {
-    		    	if(err){
-    		    	    console.log('ERROR');
-    		    	}
-		    	/* to avoid 504 error */
-		    	res.send(player);
-		    	mongoose.disconnect();
-		    });
+		    if(status == 0){
 
+			player.games[req.body.gameId - 1].score++ ;
+			player.games[req.body.gameId - 1].collectedCodes.push({code:req.body.code});
+
+			player.save(function (err) {
+    		    	    if(err){
+    		    		console.log('ERROR');
+    		    	    }
+		    	    /* to avoid 504 error */
+		    	    res.send(player);
+		    	    mongoose.disconnect();
+			});
+		    }
 		});
-
-		// Player.update({_id: req.params.id},{games[req.body.gameId - 1] [req.body.code]},
-		// function(){  mongoose.disconnect(); });
 	    }
-
+	    else{
+		res.send({ error: 'This tag does not exist' });
+		mongoose.disconnect();
+	    }
 	});
     });
 }
-	   
+
 
 
 /**

@@ -3,6 +3,8 @@ var gameCtxt = {gameId: '', type: "", code: ""};
 
 //--
 
+
+
 function getURLParameter(name) {
     return decodeURI(
 	(RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
@@ -50,7 +52,6 @@ function savePlayer( response,
 			    }
 			    return Backbone.sync(method, model, options);
 			};
-	
 			PlayerModel.save({gameId: gameCtxt.gameId , code: gameCtxt.code},{
 			    error: function(){ console.log("ERROR"); } ,
 			    success: function(){ console.log("QRCODE SUCCESS");}
@@ -59,7 +60,6 @@ function savePlayer( response,
 		}
 		else{
 		    if( gameCtxt.code != "" ){
-		
 			PlayerModel.save({gameId: gameCtxt.gameId , code: gameCtxt.code},{
 			    error: function(){ console.log("ERROR"); } ,
 			    success: function(){ console.log("QRCODE SUCCESS");}

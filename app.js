@@ -9,6 +9,7 @@ var express = require('express')
 , mongoose = require('mongoose')
 , lth = require('./config/lth')
 , shop = require('./schemas/shop')
+, prize = require('./schemas/prize')
 , player = require('./schemas/player');
 
 /**
@@ -54,6 +55,7 @@ app.configure('development', function(){
      */
     app.get('/',routes.index);
 
+
     /**
      * User login
      */
@@ -63,6 +65,11 @@ app.configure('development', function(){
      * Dashboard
      */
     app.get('/dashboard',routes.dashboard);
+
+    /**
+     * Admin Dashboard
+     */
+    app.get('/admin',routes.admin);
 
     /**
      * Get all the shops
@@ -82,18 +89,11 @@ app.configure('development', function(){
      * CREAT a player
      */
     app.post('/players', function(req, res){
-	console.log("CREATE PLAYER");
 
 	req.session.player_fbId = req.body.fb_id;
 	req.session.player_name = req.body.first_name;
 
-	console.log(req.body.first_name);
-	console.log("HALLO");
-	console.log(req.session);
-
-	console.log(req.session.player_name);
-
-
+	console.log("CREATE PLAYER");
     	player.createPlayer(req, res);
     });
     /**
@@ -112,14 +112,30 @@ app.configure('development', function(){
     	player.getPlayer(req, res);
     });
 
-   /**
+    /**
      * DELETE all players (used in test only)
      */
     app.delete('/players',function(req, res){
 	console.log("DELETE ALL PLAYERS");
     	player.deletePlayers(req, res);
     });
-  
+
+    // /**
+    //  * CHECK qrcode validity
+    //  */
+    // app.delete('/checkCodeValidity',function(req, res){
+    // 	console.log("DELETE ALL PLAYERS");
+    // 	player.deletePlayers(req, res);
+    // });
+ 
+    /**
+     * READ all the prizes
+     */
+    app.get('/prizes', function(req, res){
+	console.log("READ PRIZES");	
+    	prizes.getPrizes(req, res);
+    });
+
 });
 
 /**
